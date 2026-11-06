@@ -1,0 +1,30 @@
+# Machine specification (Q1). Fill in every field; give units. Fill in N/A if not applicable.
+
+CPU model                       : Intel Core Ultra 7 165H
+Microarchitecture               : Meteor Lake (P-cores: Redwood Cove, E-cores: Crestmont)
+Physical cores                  : 16 (6P + 8E + 2LP-E)
+Logical cores (hardware threads): 22 (6P x 2 HT + 8E + 2LP-E)
+Performance / efficiency cores  : 6 Performance + 8 Efficient + 2 Low-Power Efficient
+Base clock (GHz)                : 3.8
+Max single-core clock (GHz)     : 5.0 (P-core Turbo Boost)
+All-core clock under load (GHz) : ~4.4 (P-cores), ~3.8 (E-cores)
+SIMD instruction set and width  : AVX2, 256-bit (8 x FP32)
+FMA units per core              : 2 (P-cores), 1 (E-cores)
+Vector registers per core       : 16 YMM registers (256-bit each)
+L1 data cache (per core)        : 48 KB per P-core, 32 KB per E-core
+L2 cache (size, shared by)      : 2 MB per P-core, 4 MB per 4-E-core cluster, 2 MB per 2-LP-E cluster (18 MB total)
+L3 cache (size, shared by)      : 24 MB shared by all cores
+Cache line size (bytes)         : 64
+RAM size (GB)                   : 64
+RAM type, speed (MT/s), channels: LPDDR5x, 7467 MT/s, 8 channels (16-bit each, 128-bit total)
+Operating system                : Windows 11 Enterprise
+Compiler and version            : GCC 14.2.0 (MinGW-W64 x86_64-ucrt-posix-seh)
+
+# Derived (show the calculation in report.pdf)
+Peak FP32 GFLOP/s, one core     : 160.0 (= 5.0 GHz * 2 FMA * 8 FP32/vec * 2 ops/FMA)
+Peak FP32 GFLOP/s, all cores    : 1330.4 (= 6*4.4*2*8*2 + 8*3.8*1*8*2 + 2*3.8*1*8*2 = 844.8 + 486.4)
+Memory bandwidth (GB/s)         : 119.5 (= 8 channels * 2 bytes/transfer * 7467 MT/s)
+Ridge point, one core (FLOP/B)  : 1.34 (= 160.0 / 119.5)
+Ridge point, all cores (FLOP/B) : 11.13 (= 1330.4 / 119.5)
+
+
